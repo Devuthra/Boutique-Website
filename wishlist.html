@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Wishlist</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background:pink;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#wishlistContainer {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.wishlist-item {
+    background-color: aliceblue;
+    padding: 15px;
+    border-radius: 10px;
+    width: fit-content;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.wishlist-item img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-btn {
+    display: block;
+    margin: 30px auto;
+    width: fit-content;
+    background:darkcyan;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+    </style>
+</head>
+<body>
+
+<h1>My Wishlist ❤️‍🔥</h1>
+
+<div id="wishlistContainer"></div>
+
+<a href="shop.html" class="back-btn">← Back to Shop</a>
+
+<script >
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+let container = document.getElementById("wishlistContainer");
+
+if (wishlist.length === 0) {
+    container.innerHTML = "<p>Your wishlist is empty 💔</p>";
+}
+
+wishlist.forEach((item, index) => {
+    let div = document.createElement("div");
+    div.className = "wishlist-item";
+
+    div.innerHTML = `
+        <img src="${item.image}">
+        <h3>${item.name}</h3>
+        <p>${item.price}</p>
+        <button onclick="removeItem(${index})">Remove</button>
+    `;
+
+    container.appendChild(div);
+});
+
+function removeItem(index) {
+    wishlist.splice(index, 1);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    location.reload();
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#orderSummary {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.item img {
+    width: 80px;
+    border-radius: 6px;
+}
+
+.payment-options {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.payment-options label {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.pay-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.pay-btn:hover {
+    background: #219150;
+}
+
+.img-wrap {
+    position: relative;
+    width: 80px;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+    </style>
+</head>
+<body>
+
+<h1>Checkout</h1>
+ 
+
+<div id="orderSummary"></div>
+
+<h2>Select Payment Method</h2>
+
+<div class="payment-options">
+    <label>
+        <input type="radio" name="payment" checked>
+        💳 Credit / Debit Card
+    </label>
+
+    <label>
+        <input type="radio" name="payment">
+        📱 UPI
+    </label>
+
+    <label>
+        <input type="radio" name="payment">
+        💵 Cash on Delivery
+    </label>
+</div>
+
+<button class="pay-btn" onclick="placeOrder()">Pay Now</button>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let summary = document.getElementById("orderSummary");
+
+function renderCart() {
+    summary.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += Number(item.price);
+
+        summary.innerHTML += `
+            <div class="item">
+                <div class="img-wrap">
+                    <img src="${item.image}">
+                    <button class="remove-btn" onclick="removeItem(${index})">✕</button>
+                </div>
+
+                <div>
+                    <h4>${item.name}</h4>
+                    <p>$${item.price}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    summary.innerHTML += `<h3>Total: $${total}</h3>`;
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+function placeOrder() {
+    alert("Payment Successful ✅");
+    localStorage.removeItem("cart");
+    window.location.href = "index.html";
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
