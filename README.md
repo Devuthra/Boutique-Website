@@ -64,5 +64,5 @@ e-commerce/
 ├── js/
 │   └── script.js
 │
-└── assets/
+└── images/
     └── images/
