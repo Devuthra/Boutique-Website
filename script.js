@@ -44,6 +44,6 @@ function login() {
         alert("Login successful!");
         window.location.href = "home.html"; // your e-commerce site
     } else {
-        alert("Invalid credentials");
+        alert("Invalid Password or email");
     }
 }

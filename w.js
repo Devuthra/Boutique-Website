@@ -26,7 +26,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
 //logout
 function logout() {
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 //wishlist
