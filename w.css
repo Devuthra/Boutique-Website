@@ -994,16 +994,16 @@ width: 400px;
     cursor: pointer;
 }
 
-#prodetails .single-pro-details{
+ #prodetails .single-pro-details{
     width: 50%;
     padding-top: 30px;
     gap: 8px;
-}
+} 
 
-.single-pro-details button:hover{
+ .single-pro-details button:hover{
    background-color: #45a049;
    
-}
+} 
 
 #prodetails .single-pro-details h4{
     padding:  40px 0 20px 0;
